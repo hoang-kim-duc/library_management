@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  apipie
   devise_for :users, skip: :all
   namespace :api, defaults: {format: :json} do
     devise_scope :user do

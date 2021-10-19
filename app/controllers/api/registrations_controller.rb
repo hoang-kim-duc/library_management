@@ -1,4 +1,5 @@
 class Api::RegistrationsController < Devise::RegistrationsController
+  include Api::RegistrationsControllerDocument
   before_action :ensure_params_exist, only: :create
   # skip_before_action :verify_authenticity_token, :only => :create
 

@@ -1,7 +1,9 @@
 class Api::SessionsController < Devise::SessionsController
+  include Api::SessionsControllerDocument
+
   before_action :sign_in_params, only: :create
   before_action :load_user, only: :create
-  # sign in
+
   def create
     if @user.valid_password?(sign_in_params[:password])
       sign_in "user", @user
