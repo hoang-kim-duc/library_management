@@ -19,8 +19,7 @@ class Api::BooksController < ApplicationController
   def create
     @book = Book.new(book_params)
     if @book.save
-      cover_url = rails_blob_path(@book.data, disposition: "attachment", only_path: true)
-      render json: @book, status: :created, location: cover_url
+      render json: @book, status: :created
     else
       render json: @book.errors, status: :unprocessable_entity
     end
