@@ -5,9 +5,14 @@ class ApplicationController < ActionController::API
   private
 
   def current_user
+    @current_user ||= User.find_by authentication_token: request.headers["Authorization"]
+  end
 
-    byebug
+  def authenticate_user!
+    return if current_user.present?
 
-    @current_user ||= User.find_by authentication_token: request.headers["Authorization"] #token thông qua header
+    render json: {
+      messages: "Authorization failed!",
+    }, status: :unauthorized
   end
 end

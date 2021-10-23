@@ -1,6 +1,7 @@
 class Api::BooksController < ApplicationController
+  include Rails.application.routes.url_helpers
   before_action :set_book, only: [:show, :update, :destroy]
-  # before_action :authenticate_user!
+  before_action :authenticate_user!
 
   # GET /books
   def index
@@ -17,9 +18,9 @@ class Api::BooksController < ApplicationController
   # POST /books
   def create
     @book = Book.new(book_params)
-
     if @book.save
-      render json: @book, status: :created, location: @book.data
+      cover_url = rails_blob_path(@book.data, disposition: "attachment", only_path: true)
+      render json: @book, status: :created, location: cover_url
     else
       render json: @book.errors, status: :unprocessable_entity
     end
