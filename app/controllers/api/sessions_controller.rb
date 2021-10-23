@@ -35,7 +35,7 @@ class Api::SessionsController < Devise::SessionsController
         messages: "Cannot get User",
         is_success: false,
         data: {}
-      }, status: :failure
+      }, status: :forbidden
     end
   end
 end
