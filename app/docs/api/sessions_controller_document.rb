@@ -2,9 +2,9 @@ module Api::SessionsControllerDocument
   extend Apipie::DSL::Concern
 
   api :POST, "/log_in/", "Log in"
-  param "user", Hash, desc: "User login information" do
-    param "email", String, desc: "User's email"
-    param "password", String, desc: "user's password"
+  param "user", Hash, desc: "User login information", require: true do
+    param "email", String, desc: "User's email", require: true
+    param "password", String, desc: "user's password", require: true
   end
   example <<-EXAM
   {

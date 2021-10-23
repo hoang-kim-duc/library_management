@@ -2,11 +2,11 @@ module Api::RegistrationsControllerDocument
   extend Apipie::DSL::Concern
 
   api :POST, "/sign_up/", "Sign up"
-  param "user", Hash, desc: "User login information" do
-    param "email", String, desc: "User's email"
-    param "name", String, desc: "User's name"
-    param "password", String, desc: "user's password"
-    param "password_confirmation", String, desc: "Password confirmation"
+  param "user", Hash, desc: "User login information", require: true do
+    param "email", String, desc: "User's email", require: true
+    param "name", String, desc: "User's name", require: true
+    param "password", String, desc: "user's password", require: true
+    param "password_confirmation", String, desc: "Password confirmation", require: true
   end
   example <<-EXAM
   {

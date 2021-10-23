@@ -1,5 +1,7 @@
 class Api::BooksController < ApplicationController
   include Rails.application.routes.url_helpers
+  include Api::BooksControllerDocument
+
   before_action :set_book, only: [:show, :update, :destroy]
   before_action :authenticate_user!
 
@@ -28,7 +30,7 @@ class Api::BooksController < ApplicationController
   # PATCH/PUT /books/1
   def update
     if @book.update(book_params)
-      render json: @book
+      render json: @book, status: :created
     else
       render json: @book.errors, status: :unprocessable_entity
     end
@@ -36,13 +38,27 @@ class Api::BooksController < ApplicationController
 
   # DELETE /books/1
   def destroy
-    @book.destroy
+    if @book.destroy
+      render json: {
+        messages: "Delete successfully!",
+        is_success: true
+      }, status: :ok
+    else
+      render json: {
+        messages: "Delete failed!",
+        is_success: false
+      }, status: :unprocessable_entity
+    end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
+    rescue
+      render json: {
+        messages: "Resource not found!",
+      }, status: :unprocessable_entity
     end
 
     # Only allow a list of trusted parameters through.
