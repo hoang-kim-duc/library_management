@@ -7,5 +7,6 @@ Rails.application.routes.draw do
       post "sign_up", to: "registrations#create"
       post "log_in", to: "sessions#create"
     end
+    resources :users
   end
 end

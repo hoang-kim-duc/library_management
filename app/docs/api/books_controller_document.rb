@@ -20,6 +20,34 @@ module Api::BooksControllerDocument
 
   def create; end
 
+  api :GET, "/books", "List books"
+  param "q", Hash, desc: "Query information", require: false do
+    param "name_or_description_cont", String, desc: "Find books with name or description"
+    param "user_id_eq", Integer, desc: "Find books uploaded by user"
+  end
+  example <<-EXAM
+  http://localhost:3000/api/books/?q[name_or_description_cont]=kim duc
+  [
+    {
+      "id": 37,
+      "name": "Sach SWD",
+      "cover_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJZz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c2895a3f6329b89eb3c2dce8bcc24c6dd75093a1/Screenshot%20from%202021-06-05%2014-23-38.png?disposition=attachment",
+      "description": "Hoang Kim Duc",
+      "data_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJUT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--0a9d3d4c609463c7c9f254eeb6cbddb55774d21c/Screenshot%20from%202021-06-04%2022-01-24.png?disposition=attachment",
+      "user_id": 1
+    },
+    {
+      "id": 38,
+      "name": "Hoang Kim Duc",
+      "cover_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBKQT09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--c183e113044cfe3585e2162bc4006066f50261b8/Screenshot%20from%202021-06-05%2014-23-38.png?disposition=attachment",
+      "description": "ffasdadsa",
+      "data_url": "http://localhost:3000/rails/active_storage/blobs/redirect/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBJdz09IiwiZXhwIjpudWxsLCJwdXIiOiJibG9iX2lkIn19--28e46767efd8ee389149f02dbb09fed90b1f1ef8/Screenshot%20from%202021-06-04%2022-01-24.png?disposition=attachment",
+      "user_id": 1
+    }
+  ]
+  EXAM
+  def index; end
+
   api :GET, "/books/:id", "Show book"
   example <<-EXAM
   {

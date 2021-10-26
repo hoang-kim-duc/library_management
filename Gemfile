@@ -24,7 +24,9 @@ gem 'simple_token_authentication', '~> 1.0'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'figaro'
 gem 'apipie-rails'
-
+gem 'active_model_serializers', '~> 0.10.0'
+gem 'cancancan'
+gem 'ransack'
 # gem 'rack-cors'
 
 group :development, :test do

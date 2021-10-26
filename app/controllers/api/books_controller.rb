@@ -1,5 +1,5 @@
 class Api::BooksController < ApplicationController
-  include Rails.application.routes.url_helpers
+  load_and_authorize_resource class: Book
   include Api::BooksControllerDocument
 
   before_action :set_book, only: [:show, :update, :destroy]
@@ -7,7 +7,8 @@ class Api::BooksController < ApplicationController
 
   # GET /books
   def index
-    @books = Book.all
+    @q = Book.ransack(params[:q])
+    @books = @q.result(distinct: true)
 
     render json: @books
   end
@@ -63,6 +64,6 @@ class Api::BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:name, :description, :data)
+      params.require(:book).permit(:name, :cover,:description, :data).merge user_id: current_user.id
     end
 end

@@ -1,4 +1,5 @@
-class UsersController < ApplicationController
+class Api::UsersController < ApplicationController
+  include Api::UsersControllerDocument
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
