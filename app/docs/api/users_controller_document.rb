@@ -1,7 +1,8 @@
 module Api::UsersControllerDocument
   extend Apipie::DSL::Concern
 
-  api :GET, "/api/users/:id", "User info"
+  api :GET, "/users/:id", "User info"
+  param "Authorization", String, desc: "In header. Authorization token", required: true
   example <<-EXAM
   http://localhost:3000/api/users/1
   {

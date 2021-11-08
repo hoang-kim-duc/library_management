@@ -1,9 +1,9 @@
 class Api::BooksController < ApplicationController
-  load_and_authorize_resource class: Book
-  include Api::BooksControllerDocument
-
-  before_action :set_book, only: [:show, :update, :destroy]
   before_action :authenticate_user!
+  load_and_authorize_resource class: Book
+  before_action :set_book, only: [:show, :update, :destroy]
+
+  include Api::BooksControllerDocument
 
   # GET /books
   def index
@@ -64,6 +64,6 @@ class Api::BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:name, :cover,:description, :data).merge user_id: current_user.id
+      params.require(:book).permit(:name, :cover, :description, :category_id, :data).merge user_id: current_user.id
     end
 end

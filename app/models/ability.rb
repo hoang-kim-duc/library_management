@@ -7,7 +7,8 @@ class Ability
     cannot :manage, :all
     user ||= User.new # guest user (not logged in)
     can [:read, :create], Book
-    can [:edit, :destroy], Book do |book|
+
+    can [:update, :destroy], Book do |book|
       book.user_id == user.id
     end
   end
