@@ -9,5 +9,6 @@ Rails.application.routes.draw do
     end
     resources :users
     resources :categories, only: :index
+    resources :ratings
   end
 end
