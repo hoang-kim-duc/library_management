@@ -6,7 +6,6 @@ class CategorySerializer < ActiveModel::Serializer
   def image_url
     return "" unless object.image.attached?
 
-    rails_blob_url(object.image, disposition: "attachment")
+    rails_blob_url(object.image)
   end
-
 end

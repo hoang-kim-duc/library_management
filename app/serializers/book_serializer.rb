@@ -6,12 +6,12 @@ class BookSerializer < ActiveModel::Serializer
   def data_url
     return "" unless object.data.attached?
 
-    rails_blob_url(object.data, disposition: "attachment")
+    rails_blob_url(object.data)
   end
 
   def cover_url
     return "" unless object.cover.attached?
 
-    rails_blob_url(object.cover, disposition: "attachment")
+    rails_blob_url(object.cover)
   end
 end
