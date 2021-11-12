@@ -1,9 +1,10 @@
 class Api::BooksController < ApplicationController
+  include Api::BooksControllerDocument
+
   before_action :authenticate_user!
   load_and_authorize_resource class: Book
   before_action :set_book, only: [:show, :update, :destroy]
 
-  include Api::BooksControllerDocument
 
   # GET /books
   def index

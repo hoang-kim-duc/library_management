@@ -8,7 +8,7 @@ Rails.application.routes.draw do
       post "log_in", to: "sessions#create"
     end
     resources :users
-    resources :categories, only: :index
+    resources :categories, only: [:index, :update]
     resources :ratings
   end
 end

@@ -11,5 +11,7 @@ class Ability
     can [:update, :destroy], Book do |book|
       book.user_id == user.id
     end
+
+    # can [:update, :read], Category
   end
 end
