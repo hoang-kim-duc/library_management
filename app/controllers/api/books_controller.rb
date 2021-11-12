@@ -65,6 +65,6 @@ class Api::BooksController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def book_params
-      params.require(:book).permit(:name, :cover, :description, :category_id, :data).merge user_id: current_user.id
+      params.require(:book).permit(:name, :author, :cover, :description, :category_id, :data).merge user_id: current_user.id
     end
 end
