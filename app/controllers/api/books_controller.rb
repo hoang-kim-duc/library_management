@@ -5,7 +5,6 @@ class Api::BooksController < ApplicationController
   load_and_authorize_resource class: Book
   before_action :set_book, only: [:show, :update, :destroy]
 
-
   # GET /books
   def index
     @q = Book.ransack(params[:q])
